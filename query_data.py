@@ -1,7 +1,9 @@
-import argparse
 from langchain_community.vectorstores import Chroma
 from langchain.prompts import ChatPromptTemplate
 from langchain_community.llms.ollama import Ollama
+import time
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import Runnable
 
 from get_embedding import get_embedding_function
 
@@ -39,11 +41,18 @@ def query_rag(query_text: str, db, model):
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
 
-    response_text = model.invoke(prompt)
+    # Construct a runnable chain
+    chain: Runnable = prompt_template | model | StrOutputParser()
+
+    print("\n🧠 Response:\n", end="", flush=True)
+
+    for chunk in chain.stream({"context": context_text, "question": query_text}):
+        for char in chunk:
+            print(char, end="", flush=True)
+            time.sleep(0.01)  # You can adjust speed here
+
     sources = [doc.metadata.get("id", None) for doc, _score in results]
-    
-    formatted_response = f"\n🧠 Response:\n{response_text}\n📚 Sources: {sources}"
-    print(formatted_response)
+    print(f"\n📚 Sources: {sources}")
 
 
 if __name__ == "__main__":
