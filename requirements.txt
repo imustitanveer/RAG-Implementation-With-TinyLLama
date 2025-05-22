@@ -1,0 +1,6 @@
+langchain
+chromadb
+langchain_community
+openai
+pypdf
+pytest

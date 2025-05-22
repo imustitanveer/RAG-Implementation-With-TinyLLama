@@ -6,7 +6,7 @@ This is a simple Python-based Retrieval-Augmented Generation (RAG) application t
 - **Chroma** for vector storage
 - **OpenAI** for embeddings
 - **Ollama** (e.g., Mistral) for LLM inference
-- `.env` for secure API key handling
+- `.env` for secure API key handling 
 
 ---
 
@@ -26,13 +26,12 @@ This is a simple Python-based Retrieval-Augmented Generation (RAG) application t
 RAG Test/
 ├── chroma/                  # Vector store directory (auto-created)
 ├── data/                    # Place raw text/data files here
-├── rag/                     # Python virtual environment
 ├── .env                     # Environment variables (not tracked by Git)
 ├── .gitignore
 ├── get_embedding.py         # Sets up embedding function
 ├── populate_db.py           # Loads documents into the Chroma DB
-├── query_data.py            # One-off querying logic (optional)
-├── test_rag.py              # Main RAG loop script (interactive)
+├── query_data.py            # Main RAG loop script (interactive)
+├── test_rag.py              
 ```
 ---
 
@@ -103,15 +102,3 @@ Your question: What does the '7' card in Uno No Mercy do?
 LangChain is a framework for building applications powered by language models...
 
 📚 Sources: ['Monopoly Rules', 'Uno No Mercy Rules']
-
-
-
-
-## 📮 License
-
-MIT or your preferred license.
-
-
-## 🙋‍♂️ Author
-
-Built by [Mustassum Tanvir]. Questions or suggestions? Open an issue or reach out!
